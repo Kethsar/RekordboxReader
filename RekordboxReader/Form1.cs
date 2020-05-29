@@ -90,7 +90,7 @@ namespace RekordboxReader
             t.Tick += CheckValues;
             t.Start();
 
-            Text = "RekordboxReader / v.'the version number is too long and can't be seen without opening the settings. How retarded'.0.1.3";
+            Text = "RekordboxReader v.'the version number is too long and can't be seen without opening the settings. How retarded'.1.0.1";
             FormClosing += AppExiting;
 
             httpd = new Thread(HTTPdaemon);
@@ -138,8 +138,7 @@ namespace RekordboxReader
             }
             catch (Exception)
             {
-                Thread.Sleep(700);
-                MessageBox.Show("Another copy of Loopstr- RekordboxReader seems to be running (port " + port + " busy)\r\n\r\nthe copy you just started will now stop serving http.");
+                MessageBox.Show(string.Format("Another copy of Loopstr- RekordboxReader seems to be running (port {1} busy){0}{0}the copy you just started will now stop serving http.", "\r\n", port), "Already Running");
                 running = false;
             }
 
@@ -167,7 +166,7 @@ namespace RekordboxReader
                         }
                     }
 
-                    byte[] bytes = Encoding.UTF8.GetBytes("HTTP/1.1 200 OK\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: " + Encoding.UTF8.GetByteCount(metadata) + "\r\nConnection: close\r\n\r\n" + metadata);
+                    byte[] bytes = Encoding.UTF8.GetBytes(string.Format("HTTP/1.1 200 OK{0}Content-Type: text/plain; charset=utf-8{0}Content-Length: {1}{0}Connection: close{0}{0}{2}", "\r\n", Encoding.UTF8.GetByteCount(metadata), metadata));
                     socket.Send(bytes);
                 }
                 catch(ThreadAbortException)
@@ -267,7 +266,8 @@ namespace RekordboxReader
 
                             for (int b = 1; b < args.Length; b++)
                             {
-                                steps[b - 1] = Convert.ToInt32(args[b], 16);
+                                if (!string.IsNullOrWhiteSpace(args[b]))
+                                    steps[b - 1] = Convert.ToInt32(args[b], 16);
                             }
 
                             arg = args[0];
@@ -652,60 +652,61 @@ namespace RekordboxReader
         {
             TextBox SenderBox = (TextBox)sender;
             var settings = Properties.Settings.Default;
+            var baseStr = "Status: {0} ptr has been set to: {1}";
 
             switch (SenderBox.Name)
             {
                 case "Deck1ArtistBox":
                     pointerPatterns[D1A_KEY] = SenderBox.Text;
                     settings.d1ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 1 Artist ptr has been set to: " +SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 1 Artist", SenderBox.Text); 
                     break;
 
                 case "Deck1TitleBox":
                     pointerPatterns[D1T_KEY] = SenderBox.Text;
                     settings.d1TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 1 Title ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 1 Title", SenderBox.Text);
                     break;
 
                 case "Deck2ArtistBox":
                     pointerPatterns[D2A_KEY] = SenderBox.Text;
                     settings.d2ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 2 Artist ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 2 Artist", SenderBox.Text);
                     break;
 
                 case "Deck2TitleBox":
                     pointerPatterns[D2T_KEY] = SenderBox.Text;
                     settings.d2TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 2 Title ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 2 Title", SenderBox.Text);
                     break;
                 case "Deck3ArtistBox":
                     pointerPatterns[D3A_KEY] = SenderBox.Text;
                     settings.d3ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 3 Artist ptr has been set to: " +SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 3 Artist", SenderBox.Text);
                     break;
 
                 case "Deck3TitleBox":
                     pointerPatterns[D3T_KEY] = SenderBox.Text;
                     settings.d3TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 3 Title ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 3 Title", SenderBox.Text);
                     break;
 
                 case "Deck4ArtistBox":
                     pointerPatterns[D4A_KEY] = SenderBox.Text;
                     settings.d4ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 4 Artist ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 4 Artist", SenderBox.Text);
                     break;
 
                 case "Deck4TitleBox":
                     pointerPatterns[D4T_KEY] = SenderBox.Text;
                     settings.d4TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Deck 4 Title ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Deck 4 Title", SenderBox.Text);
                     break;
 
                 case "MasterDeckBox":
                     pointerPatterns[MD_KEY] = SenderBox.Text;
                     settings.mdPtr = SenderBox.Text;
-                    StatusMessage.Text = "Status: Master Deck ptr has been set to: " + SenderBox.Text;
+                    StatusMessage.Text = string.Format(baseStr, "Master Deck", SenderBox.Text);
                     break;
             }
 

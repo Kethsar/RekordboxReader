@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("RekordboxReader")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ed and drinks INC")]
+[assembly: AssemblyCompany("r/a/dio @ Rizon, ed and drinks INC")]
 [assembly: AssemblyProduct("RekordboxReader")]
 [assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("Gay sex with hats on")]
+[assembly: AssemblyTrademark("Gayest channel on Rizon 8 years running")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
