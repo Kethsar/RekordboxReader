@@ -1,5 +1,5 @@
 # Rekordbox Reader
-Probes the memory of Rekordbox, which is DJ software my PioneerDJ, and retrieves the artist and title metadata of the tracks currently loaded into the decks. A local HTTP daemon is run (default port 41379) that can be sent a GET request to retrieve the metadata of the current master deck. This is mostly meant to be used with [Loopstream](https://github.com/9001/Loopstream) but could have potential elsewhere, maybe.
+Probes the memory of Rekordbox, which is DJ software by PioneerDJ, and retrieves the artist and title metadata of the tracks currently loaded into the decks. A local HTTP daemon is run (default port 41379) that can be sent a GET request to retrieve the metadata of the current master deck. This is mostly meant to be used with [Loopstream](https://github.com/9001/Loopstream) but could have potential elsewhere, maybe.
 
 As this program probes memory, and Rekordbox is 64-bit software, this program must be built in 64-bit mode to work.
 
