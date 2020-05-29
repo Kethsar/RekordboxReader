@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RekordboxReader.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="d1ArtistPtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A57DA8*8*38*338*18*0</Value>
+    </Setting>
+    <Setting Name="d1TitlePtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A57DA8*8*38*338*10*0</Value>
+    </Setting>
+    <Setting Name="d2ArtistPtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A578F0*8*8*160*0</Value>
+    </Setting>
+    <Setting Name="d2TitlePtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A578F0*8*8*158*0</Value>
+    </Setting>
+    <Setting Name="mdPtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A57D68*8*50*420*30*19C</Value>
+    </Setting>
+    <Setting Name="port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">41379</Value>
+    </Setting>
+    <Setting Name="d3TitlePtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A652C0*758*170*0*0</Value>
+    </Setting>
+    <Setting Name="d3ArtistPtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A652C0*758*170*8*0</Value>
+    </Setting>
+    <Setting Name="d4ArtistPtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A578F0*8*48*188*0</Value>
+    </Setting>
+    <Setting Name="d4TitlePtr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rekordbox.exe+03A578F0*8*48*180*0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
