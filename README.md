@@ -5,6 +5,11 @@ As this program probes memory, and Rekordbox is 64-bit software, this program mu
 
 This has been tested and working with Rekordbox 5.8.1 and 5.8.3, and settings for both can be found below. Other versions require probing for pointers using CheatEngine.
 
+## Known Issues
+* Switching from 2-deck mode to 4-deck mode in Rekordbox breaks things, and requires its own set of pointers.
+* Switching from 4-deck mode to 2-deck mode breaks things worse, and using the 2-deck mode pointers won't work until Rekordbox is re-opened.
+* This software is garbage (won't fix)
+
 ## Loopstream Setup
 Open Loopstream's settings and go to the Tags tab. Copy the below and then click "Load" on the Tags settings window. This should import a tag reader that polls Rekordbox Reader.
 ``##gz#H4sIAAAAAAAEAEWMwQrCMBBEf8WjCrqNCtUy7Ed48dwm2xosaU1SUMR/N1FR9vDmzcAieM3nGMeKSG3KdZFOVTu1LQ+gvGGMjufr5QKUE6KNfJTL4E0z3EBZYSToGTG81EY8n6QJNgro62i9XFkVRQF6R3R+ZAXKQOM0pyEDk++N6MEIt3Uf0od/AXGJ1nU8xXa1B/0cdyu94Yd6gj7xBdyQcd/VAAAA##``
