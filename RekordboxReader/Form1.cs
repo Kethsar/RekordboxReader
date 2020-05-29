@@ -102,7 +102,7 @@ namespace RekordboxReader
 
         public int read(IntPtr adr, byte[] buf)
         {
-            int ret = -1;
+            var ret = -1;
 
             ReadProcessMemory(handle, adr, buf, sizeof(byte) * buf.Length, out ret);
             if(adr == IntPtr.Zero)
@@ -115,11 +115,11 @@ namespace RekordboxReader
 
         public int read(IntPtr adr, byte[] buf, int[] ofs)
         {
-            byte[] readAddr = new byte[IntPtr.Size];
+            var readAddr = new byte[IntPtr.Size];
 
             foreach (int o in ofs)
             {
-                int i = read(adr, readAddr);
+                var i = read(adr, readAddr);
                 if (i < readAddr.Length) return -1;
                 adr = new IntPtr(BitConverter.ToInt64(readAddr, 0) + o);
             }
@@ -128,7 +128,7 @@ namespace RekordboxReader
 
         private void HTTPdaemon() //stolen from ed like everything
         {
-            byte[] buffer = new byte[256];
+            var buffer = new byte[256];
             tcpListener = new TcpListener(IPAddress.Loopback, port);
             Socket socket = null;
 
@@ -153,7 +153,7 @@ namespace RekordboxReader
                     }
 
                     socket = tcpListener.AcceptSocket();
-                    string metadata = "";
+                    var metadata = "";
 
                     lock (locker)
                     {
@@ -166,7 +166,7 @@ namespace RekordboxReader
                         }
                     }
 
-                    byte[] bytes = Encoding.UTF8.GetBytes(string.Format("HTTP/1.1 200 OK{0}Content-Type: text/plain; charset=utf-8{0}Content-Length: {1}{0}Connection: close{0}{0}{2}", "\r\n", Encoding.UTF8.GetByteCount(metadata), metadata));
+                    var bytes = Encoding.UTF8.GetBytes(string.Format("HTTP/1.1 200 OK{0}Content-Type: text/plain; charset=utf-8{0}Content-Length: {1}{0}Connection: close{0}{0}{2}", "\r\n", Encoding.UTF8.GetByteCount(metadata), metadata));
                     socket.Send(bytes);
                 }
                 catch(ThreadAbortException)
@@ -221,19 +221,19 @@ namespace RekordboxReader
                 {
                     foreach (var k in pointerPatterns.Keys)
                     {
-                        string ret = "";
-                        string lpm = "";
+                        var ret = "";
+                        var lpm = "";
                         var arg = pointerPatterns[k];
                         if (string.IsNullOrWhiteSpace(arg))
                             continue;
 
-                        byte[] raw = new byte[1024];
-                        IntPtr ofs = IntPtr.Zero;
-                        int[] steps = new int[0];
+                        var raw = new byte[1024];
+                        var ofs = IntPtr.Zero;
+                        var steps = new int[0];
 
                         if (arg.Contains('+'))
                         {
-                            string[] args = arg.Split('+');
+                            var args = arg.Split('+');
 
                             if (args[0] != lpm)
                             {
@@ -261,10 +261,10 @@ namespace RekordboxReader
 
                         if (arg.Contains('*'))
                         {
-                            string[] args = arg.Split('*');
+                            var args = arg.Split('*');
                             steps = new int[args.Length - 1];
 
-                            for (int b = 1; b < args.Length; b++)
+                            for (var b = 1; b < args.Length; b++)
                             {
                                 if (!string.IsNullOrWhiteSpace(args[b]))
                                     steps[b - 1] = Convert.ToInt32(args[b], 16);
@@ -275,11 +275,11 @@ namespace RekordboxReader
 
                         ofs += Convert.ToInt32(arg, 16);
 
-                        int len = read(ofs, raw, steps);
+                        var len = read(ofs, raw, steps);
                         if (len > 0)
                         {
                             ret = Encoding.UTF8.GetString(raw);
-                            int i = ret.IndexOf('\0');
+                            var i = ret.IndexOf('\0');
 
                             if (i >= 0)
                                 ret = ret.Substring(0, i);
@@ -386,24 +386,21 @@ namespace RekordboxReader
 
         public byte[] Compress(string key)
         {
-            byte[] KeyByteArray = Encoding.UTF8.GetBytes(key);
+            var KeyByteArray = Encoding.UTF8.GetBytes(key);
             var OutputStream = new MemoryStream();
-            byte[] OutputBytes;
 
             using (var Gzip = new System.IO.Compression.GZipStream(OutputStream, System.IO.Compression.CompressionMode.Compress))
             {
                 Gzip.Write(KeyByteArray, 0, KeyByteArray.Length);
             }
 
-            OutputBytes = OutputStream.ToArray();
-            return OutputBytes;
+            return OutputStream.ToArray();
         }
 
         public string Decompress(string key)
         {
-            byte[] KeyByteArray = Convert.FromBase64String(key);
-            MemoryStream OutStream = new MemoryStream();
-            string OutputString;
+            var KeyByteArray = Convert.FromBase64String(key);
+            var OutStream = new MemoryStream();
 
             using (var Gzip = new System.IO.Compression.GZipStream(new MemoryStream(KeyByteArray), System.IO.Compression.CompressionMode.Decompress))
             {
@@ -411,8 +408,7 @@ namespace RekordboxReader
                 Gzip.Close();
             }
 
-            OutputString = Encoding.UTF8.GetString(OutStream.ToArray());
-            return OutputString;
+            return Encoding.UTF8.GetString(OutStream.ToArray());
         }
 
         private void SettingsApplier(string[] Settings)
@@ -461,14 +457,14 @@ namespace RekordboxReader
             }
             Key = Key.Substring(4);
                 
-            string DGString = Decompress(Key);
-            string[] SString = DGString.Split(new string[] { "!!" }, StringSplitOptions.None);
+            var DGString = Decompress(Key);
+            var SString = DGString.Split(new string[] { "!!" }, StringSplitOptions.None);
             SettingsApplier(SString);
         }
 
         private void PresetShare(object sender, EventArgs e)
         {
-            byte[] GPreset = Compress(Serialize());
+            var GPreset = Compress(Serialize());
             var BPreset = "!RR!"+Convert.ToBase64String(GPreset);
             Clipboard.Clear();
             Clipboard.SetText(BPreset);
@@ -650,7 +646,7 @@ namespace RekordboxReader
 
         private void PtrBoxChanged(object sender, EventArgs e)
         {
-            TextBox SenderBox = (TextBox)sender;
+            var SenderBox = (TextBox)sender;
             var settings = Properties.Settings.Default;
             var baseStr = "Status: {0} ptr has been set to: {1}";
 
