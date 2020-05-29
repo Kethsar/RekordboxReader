@@ -81,6 +81,7 @@
             this.Deck2TitleLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck2TitleLabel.TabIndex = 11;
             this.Deck2TitleLabel.Text = "Nothing read so far.";
+            this.Deck2TitleLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // label1
             // 
@@ -117,6 +118,7 @@
             this.Deck2ArtistLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck2ArtistLabel.TabIndex = 5;
             this.Deck2ArtistLabel.Text = "Nothing read so far.";
+            this.Deck2ArtistLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // MasterDeckInfo
             // 
@@ -134,6 +136,7 @@
             this.Deck1ArtistLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck1ArtistLabel.TabIndex = 1;
             this.Deck1ArtistLabel.Text = "Nothing read so far.";
+            this.Deck1ArtistLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // Deck1TitleLabel
             // 
@@ -143,6 +146,7 @@
             this.Deck1TitleLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck1TitleLabel.TabIndex = 10;
             this.Deck1TitleLabel.Text = "Nothing read so far.";
+            this.Deck1TitleLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // StatusMessage
             // 
@@ -323,6 +327,7 @@
             this.Deck3ArtistLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck3ArtistLabel.TabIndex = 1;
             this.Deck3ArtistLabel.Text = "Nothing read so far.";
+            this.Deck3ArtistLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // label15
             // 
@@ -350,6 +355,7 @@
             this.Deck4ArtistLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck4ArtistLabel.TabIndex = 5;
             this.Deck4ArtistLabel.Text = "Nothing read so far.";
+            this.Deck4ArtistLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // Deck3TitleLabel
             // 
@@ -359,6 +365,7 @@
             this.Deck3TitleLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck3TitleLabel.TabIndex = 10;
             this.Deck3TitleLabel.Text = "Nothing read so far.";
+            this.Deck3TitleLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // Deck4TitleLabel
             // 
@@ -368,6 +375,7 @@
             this.Deck4TitleLabel.Size = new System.Drawing.Size(100, 13);
             this.Deck4TitleLabel.TabIndex = 11;
             this.Deck4TitleLabel.Text = "Nothing read so far.";
+            this.Deck4TitleLabel.Resize += new System.EventHandler(this.Label_Resize);
             // 
             // label20
             // 

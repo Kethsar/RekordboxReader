@@ -12,8 +12,6 @@ using System.Windows.Forms;
 
 namespace RekordboxReader
 {
-
-
     public partial class Form1 : Form
     {
         [Flags]
@@ -355,13 +353,10 @@ namespace RekordboxReader
                         }
                     }
                 }
-
-                ResizeIfNeeded();
             }
             catch (Exception ex)
             {
                 StatusMessage.Text = string.Format("Somebody Fucked Up: {0}", ex.Message);
-                ResizeIfNeeded();
             }
         }
 
@@ -391,7 +386,6 @@ namespace RekordboxReader
 
         public byte[] Compress(string key)
         {
-
             byte[] KeyByteArray = Encoding.UTF8.GetBytes(key);
             var OutputStream = new MemoryStream();
             byte[] OutputBytes;
@@ -403,7 +397,6 @@ namespace RekordboxReader
 
             OutputBytes = OutputStream.ToArray();
             return OutputBytes;
-            
         }
 
         public string Decompress(string key)
@@ -457,7 +450,6 @@ namespace RekordboxReader
                     StatusMessage.Text = "Status: Bad preset, settings not loaded.";
                     break;
             }
-
         }
 
         private void DeserializeAndApply(string Key)
@@ -523,12 +515,17 @@ namespace RekordboxReader
             if (StatusMessage.Size.Width > newWidth)
                 newWidth = StatusMessage.Size.Width;
 
-            newWidth += Deck1TitleLabel.Location.X;
+            newWidth += Deck1TitleLabel.Location.X + SIZE_PADDING;
             if (newWidth < minWidth)
                 newWidth = minWidth;
 
             var newSize = new System.Drawing.Size(newWidth, newHeight);
             ClientSize = newSize;
+        }
+
+        private void Label_Resize(object sender, EventArgs e)
+        {
+            ResizeIfNeeded();
         }
 
         private void RekordboxDoko()
