@@ -12,7 +12,7 @@ namespace RekordboxReader.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A57DA8*8*38*338*18*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d1ArtistPtr {
             get {
                 return ((string)(this["d1ArtistPtr"]));
@@ -37,7 +37,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A57DA8*8*38*338*10*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d1TitlePtr {
             get {
                 return ((string)(this["d1TitlePtr"]));
@@ -49,7 +49,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A578F0*8*8*160*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d2ArtistPtr {
             get {
                 return ((string)(this["d2ArtistPtr"]));
@@ -61,7 +61,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A578F0*8*8*158*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d2TitlePtr {
             get {
                 return ((string)(this["d2TitlePtr"]));
@@ -73,7 +73,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A57D68*8*50*420*30*19C")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string mdPtr {
             get {
                 return ((string)(this["mdPtr"]));
@@ -97,7 +97,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A652C0*758*170*0*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d3TitlePtr {
             get {
                 return ((string)(this["d3TitlePtr"]));
@@ -109,7 +109,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A652C0*758*170*8*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d3ArtistPtr {
             get {
                 return ((string)(this["d3ArtistPtr"]));
@@ -121,7 +121,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A578F0*8*48*188*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d4ArtistPtr {
             get {
                 return ((string)(this["d4ArtistPtr"]));
@@ -133,7 +133,7 @@ namespace RekordboxReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("rekordbox.exe+03A578F0*8*48*180*0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string d4TitlePtr {
             get {
                 return ((string)(this["d4TitlePtr"]));

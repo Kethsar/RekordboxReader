@@ -102,19 +102,15 @@ namespace RekordboxReader
 
         public int read(IntPtr adr, byte[] buf)
         {
-            var ret = -1;
+            int ret = -1,
+                readsize = buf.Length;
             var warked = false;
-            var readbuf = new byte[buf.Length];
 
             for (var i = 0; i < 4; i++)
             {
-                warked = ReadProcessMemory(handle, adr, readbuf, sizeof(byte) * readbuf.Length, out ret);
-                if (warked)
-                {
-                    Array.Copy(readbuf, buf, ret);
-                    break;
-                }
-                readbuf = new byte[readbuf.Length / 2];
+                warked = ReadProcessMemory(handle, adr, buf, sizeof(byte) * readsize, out ret);
+                if (warked) break;
+                readsize /= 2;
             }
 
             return ret;
