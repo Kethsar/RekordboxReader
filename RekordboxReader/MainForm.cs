@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace RekordboxReader
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         [Flags]
         public enum ProcessAccessFlags : uint
@@ -68,12 +68,12 @@ namespace RekordboxReader
 
         static object locker = new object();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             LoadProperties();
             decks = new Deck[DECK_CNT];
