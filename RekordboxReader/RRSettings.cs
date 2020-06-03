@@ -152,7 +152,6 @@ namespace RekordboxReader
             var props = typeof(RRSettings).GetProperties();
             foreach (var p in props)
             {
-                
                 p.SetValue(this, p.GetValue(settings));
             }
         }

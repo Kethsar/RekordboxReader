@@ -48,6 +48,11 @@ namespace RekordboxReader
         const string D4A_KEY = "Deck4ArtistPointer";
         const string MD_KEY = "MasterDeckPointer";
 
+        const string HTTP_RESPONSE = "HTTP/1.1 200 OK{0}" +
+            "Content-Type: text/plain; charset=utf-8{0}" +
+            "Content-Length: {1}{0}" +
+            "Connection: close{0}{0}{2}";
+
         int master,
             port,
             minWidth,
@@ -132,7 +137,6 @@ namespace RekordboxReader
 
         private void HTTPdaemon() //stolen from ed like everything
         {
-            var buffer = new byte[256];
             tcpListener = new TcpListener(IPAddress.Loopback, port);
             Socket socket = null;
 
@@ -170,14 +174,14 @@ namespace RekordboxReader
                         }
                     }
 
-                    var bytes = Encoding.UTF8.GetBytes(string.Format("HTTP/1.1 200 OK{0}Content-Type: text/plain; charset=utf-8{0}Content-Length: {1}{0}Connection: close{0}{0}{2}", "\r\n", Encoding.UTF8.GetByteCount(metadata), metadata));
+                    var bytes = Encoding.UTF8.GetBytes(string.Format(HTTP_RESPONSE, "\r\n", Encoding.UTF8.GetByteCount(metadata), metadata));
                     socket.Send(bytes);
                 }
                 catch (ThreadAbortException)
                 {
                     break;
                 }
-                catch (Exception)
+                catch 
                 {
                     Thread.Sleep(500);
                 }
@@ -287,6 +291,8 @@ namespace RekordboxReader
 
                             if (i >= 0)
                                 ret = ret.Substring(0, i);
+                            else
+                                ret = "(read error)"; // While I guess technically possible, I doubt we'll encounter a proper string that is 1024 bytes long
                         }
 
                         if (ShitsGarbage(ret))
@@ -385,9 +391,6 @@ namespace RekordboxReader
             if (Deck1TitleLabel.Size.Width > newWidth)
                 newWidth = Deck1TitleLabel.Size.Width;
 
-            if (Deck1ArtistLabel.Size.Width > newWidth)
-                newWidth = Deck1ArtistLabel.Size.Width;
-
             if (Deck2ArtistLabel.Size.Width > newWidth)
                 newWidth = Deck2ArtistLabel.Size.Width;
 
@@ -406,10 +409,12 @@ namespace RekordboxReader
             if (Deck4ArtistLabel.Size.Width > newWidth)
                 newWidth = Deck4ArtistLabel.Size.Width;
 
-            if (StatusMessage.Size.Width > newWidth)
-                newWidth = StatusMessage.Size.Width;
+            newWidth += Deck1TitleLabel.Location.X;
 
-            newWidth += Deck1TitleLabel.Location.X + SIZE_PADDING;
+            if (StatusMessage.Size.Width > newWidth)
+                newWidth = StatusMessage.Size.Width + StatusMessage.Location.X;
+
+            newWidth += SIZE_PADDING;
             if (newWidth < minWidth)
                 newWidth = minWidth;
 
