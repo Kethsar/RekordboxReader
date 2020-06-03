@@ -39,22 +39,7 @@
             this.StatusMessage = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.PortBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.Deck1ArtistBox = new System.Windows.Forms.TextBox();
-            this.Deck1TitleBox = new System.Windows.Forms.TextBox();
-            this.Deck2ArtistBox = new System.Windows.Forms.TextBox();
-            this.Deck2TitleBox = new System.Windows.Forms.TextBox();
-            this.MasterDeckBox = new System.Windows.Forms.TextBox();
             this.settingsBtn = new System.Windows.Forms.Button();
-            this.PresetLoadButton = new System.Windows.Forms.Button();
-            this.PresetShareButton = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.Deck3ArtistLabel = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -63,14 +48,6 @@
             this.Deck4TitleLabel = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.Deck3ArtistBox = new System.Windows.Forms.TextBox();
-            this.Deck3TitleBox = new System.Windows.Forms.TextBox();
-            this.Deck4ArtistBox = new System.Windows.Forms.TextBox();
-            this.Deck4TitleBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Deck2TitleLabel
@@ -176,110 +153,6 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Deck 2 Title:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 268);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(28, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "port:";
-            // 
-            // PortBox
-            // 
-            this.PortBox.Location = new System.Drawing.Point(113, 264);
-            this.PortBox.MaxLength = 5;
-            this.PortBox.Name = "PortBox";
-            this.PortBox.Size = new System.Drawing.Size(100, 20);
-            this.PortBox.TabIndex = 17;
-            this.PortBox.Text = "41379";
-            this.PortBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterPressed);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 298);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Deck 1 Artist ptr:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 328);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Deck 1 Title ptr:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 359);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 13);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Deck 2 Artist ptr:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 389);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 13);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Deck 2 Title ptr:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 542);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(86, 13);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Master Deck ptr:";
-            // 
-            // Deck1ArtistBox
-            // 
-            this.Deck1ArtistBox.Location = new System.Drawing.Point(113, 295);
-            this.Deck1ArtistBox.Name = "Deck1ArtistBox";
-            this.Deck1ArtistBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck1ArtistBox.TabIndex = 23;
-            this.Deck1ArtistBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // Deck1TitleBox
-            // 
-            this.Deck1TitleBox.Location = new System.Drawing.Point(113, 325);
-            this.Deck1TitleBox.Name = "Deck1TitleBox";
-            this.Deck1TitleBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck1TitleBox.TabIndex = 24;
-            this.Deck1TitleBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // Deck2ArtistBox
-            // 
-            this.Deck2ArtistBox.Location = new System.Drawing.Point(113, 356);
-            this.Deck2ArtistBox.Name = "Deck2ArtistBox";
-            this.Deck2ArtistBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck2ArtistBox.TabIndex = 25;
-            this.Deck2ArtistBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // Deck2TitleBox
-            // 
-            this.Deck2TitleBox.Location = new System.Drawing.Point(113, 387);
-            this.Deck2TitleBox.Name = "Deck2TitleBox";
-            this.Deck2TitleBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck2TitleBox.TabIndex = 26;
-            this.Deck2TitleBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // MasterDeckBox
-            // 
-            this.MasterDeckBox.Location = new System.Drawing.Point(113, 537);
-            this.MasterDeckBox.Name = "MasterDeckBox";
-            this.MasterDeckBox.Size = new System.Drawing.Size(368, 20);
-            this.MasterDeckBox.TabIndex = 27;
-            this.MasterDeckBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
             // settingsBtn
             // 
             this.settingsBtn.Location = new System.Drawing.Point(80, 228);
@@ -288,36 +161,7 @@
             this.settingsBtn.TabIndex = 28;
             this.settingsBtn.Text = "Show Settings";
             this.settingsBtn.UseVisualStyleBackColor = true;
-            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
-            // 
-            // PresetLoadButton
-            // 
-            this.PresetLoadButton.Location = new System.Drawing.Point(113, 564);
-            this.PresetLoadButton.Name = "PresetLoadButton";
-            this.PresetLoadButton.Size = new System.Drawing.Size(46, 25);
-            this.PresetLoadButton.TabIndex = 29;
-            this.PresetLoadButton.Text = "Load";
-            this.PresetLoadButton.UseVisualStyleBackColor = true;
-            this.PresetLoadButton.Click += new System.EventHandler(this.PresetLoad);
-            // 
-            // PresetShareButton
-            // 
-            this.PresetShareButton.Location = new System.Drawing.Point(162, 564);
-            this.PresetShareButton.Name = "PresetShareButton";
-            this.PresetShareButton.Size = new System.Drawing.Size(46, 25);
-            this.PresetShareButton.TabIndex = 30;
-            this.PresetShareButton.Text = "Share";
-            this.PresetShareButton.UseVisualStyleBackColor = true;
-            this.PresetShareButton.Click += new System.EventHandler(this.PresetShare);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 572);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "Preset:";
+            this.settingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
             // 
             // Deck3ArtistLabel
             // 
@@ -395,103 +239,12 @@
             this.label21.TabIndex = 15;
             this.label21.Text = "Deck 4 Title:";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 419);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(86, 13);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Deck 3 Artist ptr:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(12, 450);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(83, 13);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "Deck 3 Title ptr:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(12, 480);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(86, 13);
-            this.label18.TabIndex = 20;
-            this.label18.Text = "Deck 4 Artist ptr:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 510);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(83, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "Deck 4 Title ptr:";
-            // 
-            // Deck3ArtistBox
-            // 
-            this.Deck3ArtistBox.Location = new System.Drawing.Point(113, 416);
-            this.Deck3ArtistBox.Name = "Deck3ArtistBox";
-            this.Deck3ArtistBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck3ArtistBox.TabIndex = 23;
-            this.Deck3ArtistBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // Deck3TitleBox
-            // 
-            this.Deck3TitleBox.Location = new System.Drawing.Point(113, 446);
-            this.Deck3TitleBox.Name = "Deck3TitleBox";
-            this.Deck3TitleBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck3TitleBox.TabIndex = 24;
-            this.Deck3TitleBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // Deck4ArtistBox
-            // 
-            this.Deck4ArtistBox.Location = new System.Drawing.Point(113, 478);
-            this.Deck4ArtistBox.Name = "Deck4ArtistBox";
-            this.Deck4ArtistBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck4ArtistBox.TabIndex = 25;
-            this.Deck4ArtistBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
-            // Deck4TitleBox
-            // 
-            this.Deck4TitleBox.Location = new System.Drawing.Point(113, 508);
-            this.Deck4TitleBox.Name = "Deck4TitleBox";
-            this.Deck4TitleBox.Size = new System.Drawing.Size(368, 20);
-            this.Deck4TitleBox.TabIndex = 26;
-            this.Deck4TitleBox.TextChanged += new System.EventHandler(this.PtrBoxChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(259, 256);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.PresetShareButton);
-            this.Controls.Add(this.PresetLoadButton);
+            this.ClientSize = new System.Drawing.Size(259, 260);
             this.Controls.Add(this.settingsBtn);
-            this.Controls.Add(this.MasterDeckBox);
-            this.Controls.Add(this.Deck4TitleBox);
-            this.Controls.Add(this.Deck2TitleBox);
-            this.Controls.Add(this.Deck4ArtistBox);
-            this.Controls.Add(this.Deck2ArtistBox);
-            this.Controls.Add(this.Deck3TitleBox);
-            this.Controls.Add(this.Deck1TitleBox);
-            this.Controls.Add(this.Deck3ArtistBox);
-            this.Controls.Add(this.Deck1ArtistBox);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.PortBox);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label20);
@@ -534,22 +287,7 @@
         public System.Windows.Forms.Label StatusMessage;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox PortBox;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox Deck1ArtistBox;
-        private System.Windows.Forms.TextBox Deck1TitleBox;
-        private System.Windows.Forms.TextBox Deck2ArtistBox;
-        private System.Windows.Forms.TextBox Deck2TitleBox;
-        private System.Windows.Forms.TextBox MasterDeckBox;
         private System.Windows.Forms.Button settingsBtn;
-        private System.Windows.Forms.Button PresetLoadButton;
-        private System.Windows.Forms.Button PresetShareButton;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label Deck3ArtistLabel;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
@@ -558,14 +296,6 @@
         private System.Windows.Forms.Label Deck4TitleLabel;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox Deck3ArtistBox;
-        private System.Windows.Forms.TextBox Deck3TitleBox;
-        private System.Windows.Forms.TextBox Deck4ArtistBox;
-        private System.Windows.Forms.TextBox Deck4TitleBox;
     }
 }
 

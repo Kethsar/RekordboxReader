@@ -38,22 +38,21 @@ namespace RekordboxReader
 
         const int SIZE_PADDING = 12;
         const int DECK_CNT = 4;
-        const string D1T_KEY = "d1title";
-        const string D1A_KEY = "d1artist";
-        const string D2T_KEY = "d2title";
-        const string D2A_KEY = "d2artist";
-        const string D3T_KEY = "d3title";
-        const string D3A_KEY = "d3artist";
-        const string D4T_KEY = "d4title";
-        const string D4A_KEY = "d4artist";
-        const string MD_KEY = "master";
+        const string D1T_KEY = "Deck1TitlePointer";
+        const string D1A_KEY = "Deck1ArtistPointer";
+        const string D2T_KEY = "Deck2TitlePointer";
+        const string D2A_KEY = "Deck2ArtistPointer";
+        const string D3T_KEY = "Deck3TitlePointer";
+        const string D3A_KEY = "Deck3ArtistPointer";
+        const string D4T_KEY = "Deck4TitlePointer";
+        const string D4A_KEY = "Deck4ArtistPointer";
+        const string MD_KEY = "MasterDeckPointer";
 
         int master,
             port,
             minWidth,
             normalWidth,
-            normalHeight,
-            settingsWidth;
+            normalHeight;
 
         Process RekordBox;
         IntPtr handle;
@@ -62,9 +61,11 @@ namespace RekordboxReader
         System.Windows.Forms.Timer t;
         TcpListener tcpListener;
         Thread httpd, rbdd;
-        bool running = true;
-        bool RekordboxFound = false;
-        bool settingsShown = false;
+        RRSettings settings;
+        Type settingsType;
+        bool running = true,
+             RekordboxFound = false,
+             settingsShown = false;
 
         static object locker = new object();
 
@@ -75,7 +76,8 @@ namespace RekordboxReader
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LoadProperties();
+            settingsType = typeof(RRSettings);
+            LoadSettings();
             decks = new Deck[DECK_CNT];
             t = new System.Windows.Forms.Timer();
 
@@ -84,7 +86,6 @@ namespace RekordboxReader
 
             minWidth = normalWidth = ClientSize.Width;
             normalHeight = ClientSize.Height;
-            settingsWidth = Deck1ArtistBox.Location.X + Deck1ArtistBox.Size.Width + SIZE_PADDING;
 
             t.Interval = 500;
             t.Tick += CheckValues;
@@ -172,7 +173,7 @@ namespace RekordboxReader
                     var bytes = Encoding.UTF8.GetBytes(string.Format("HTTP/1.1 200 OK{0}Content-Type: text/plain; charset=utf-8{0}Content-Length: {1}{0}Connection: close{0}{0}{2}", "\r\n", Encoding.UTF8.GetByteCount(metadata), metadata));
                     socket.Send(bytes);
                 }
-                catch(ThreadAbortException)
+                catch (ThreadAbortException)
                 {
                     break;
                 }
@@ -365,118 +366,12 @@ namespace RekordboxReader
 
         private bool ShitsGarbage(string check)
         {
-            foreach(var c in check)
+            foreach (var c in check)
             {
                 if (c <= 0x1F) // various ASCII control codes. Means a pointer is probably fucked and reading garbage data instead of a string proper.
                     return true;
             }
             return false;
-        }
-
-        private string Serialize() // Version 2. Now shares 4 decks.
-        {
-            // Structure of serialization will always be [Serializer version, ...anything else]
-            return "2" + "!!" + Deck1ArtistBox.Text + "!!" +
-                Deck1TitleBox.Text + "!!" +
-                Deck2ArtistBox.Text + "!!" +
-                Deck2TitleBox.Text + "!!" +
-                Deck3ArtistBox.Text + "!!" +
-                Deck3TitleBox.Text + "!!" +
-                Deck4ArtistBox.Text + "!!" +
-                Deck4TitleBox.Text + "!!" +
-                MasterDeckBox.Text;
-        }
-
-        public byte[] Compress(string key)
-        {
-            var KeyByteArray = Encoding.UTF8.GetBytes(key);
-            var OutputStream = new MemoryStream();
-
-            using (var Gzip = new System.IO.Compression.GZipStream(OutputStream, System.IO.Compression.CompressionMode.Compress))
-            {
-                Gzip.Write(KeyByteArray, 0, KeyByteArray.Length);
-            }
-
-            return OutputStream.ToArray();
-        }
-
-        public string Decompress(string key)
-        {
-            var KeyByteArray = Convert.FromBase64String(key);
-            var OutStream = new MemoryStream();
-
-            using (var Gzip = new System.IO.Compression.GZipStream(new MemoryStream(KeyByteArray), System.IO.Compression.CompressionMode.Decompress))
-            {
-                Gzip.CopyTo(OutStream);
-                Gzip.Close();
-            }
-
-            return Encoding.UTF8.GetString(OutStream.ToArray());
-        }
-
-        private void SettingsApplier(string[] Settings)
-        {
-            switch (Settings[0]) // switch (version)
-            {
-                case "1": 
-                    if (Settings.Length == 6) // KeyOK
-                    {
-                        Deck1ArtistBox.Text = Settings[1];
-                        Deck1TitleBox.Text = Settings[2];
-                        Deck2ArtistBox.Text = Settings[3];
-                        Deck2TitleBox.Text = Settings[4];
-                        MasterDeckBox.Text = Settings[5];
-                    }
-                    StatusMessage.Text = "Status: Loaded preset. Hope it works.";
-                    break;
-                case "2":
-                    if (Settings.Length == 10) // KeyOK
-                    {
-                        Deck1ArtistBox.Text = Settings[1];
-                        Deck1TitleBox.Text = Settings[2];
-                        Deck2ArtistBox.Text = Settings[3];
-                        Deck2TitleBox.Text = Settings[4];
-                        Deck3ArtistBox.Text = Settings[5];
-                        Deck3TitleBox.Text = Settings[6];
-                        Deck4ArtistBox.Text = Settings[7];
-                        Deck4TitleBox.Text = Settings[8];
-                        MasterDeckBox.Text = Settings[9];
-                    }
-                    StatusMessage.Text = "Status: Loaded preset. Hope it works.";
-                    break;
-
-                default:
-                    StatusMessage.Text = "Status: Bad preset, settings not loaded.";
-                    break;
-            }
-        }
-
-        private void DeserializeAndApply(string Key)
-        {
-            if(Key.Length <= 4 || Key.Substring(0,4) != "!RR!")
-            {
-                StatusMessage.Text = "Status: Faulty preset code";
-                return;
-            }
-            Key = Key.Substring(4);
-                
-            var DGString = Decompress(Key);
-            var SString = DGString.Split(new string[] { "!!" }, StringSplitOptions.None);
-            SettingsApplier(SString);
-        }
-
-        private void PresetShare(object sender, EventArgs e)
-        {
-            var GPreset = Compress(Serialize());
-            var BPreset = "!RR!"+Convert.ToBase64String(GPreset);
-            Clipboard.Clear();
-            Clipboard.SetText(BPreset);
-            StatusMessage.Text = "Status: Preset copied to clipboard.";
-        }
-
-        private void PresetLoad(object sender, EventArgs e)
-        {
-            DeserializeAndApply(Clipboard.GetText());
         }
 
         private void ResizeIfNeeded()
@@ -540,11 +435,11 @@ namespace RekordboxReader
                         handle = OpenProcess(ProcessAccessFlags.VMRead, false, RekordBox.Id);
                         RekordboxFound = true;
 
-                       // Invoke needed as this is being run in a separate thread.
-                       StatusMessage.Invoke((Action)(() =>
-                       {
-                           StatusMessage.Text = "Status: Rekordbox process found. Reading.";
-                       }));
+                        // Invoke needed as this is being run in a separate thread.
+                        StatusMessage.Invoke((Action)(() =>
+                        {
+                            StatusMessage.Text = "Status: Rekordbox process found. Reading.";
+                        }));
 
                         break;
                     }
@@ -563,153 +458,75 @@ namespace RekordboxReader
             }
         }
 
-        private void LoadProperties()
+        public void LoadSettings()
         {
-            var settings = Properties.Settings.Default;
+            settings = RRSettings.LoadFile();
             if (pointerPatterns == null)
                 pointerPatterns = new Dictionary<string, string>();
 
-            port = settings.port;
-            pointerPatterns.Add(MD_KEY, settings.mdPtr);
-            pointerPatterns.Add(D1A_KEY, settings.d1ArtistPtr);
-            pointerPatterns.Add(D1T_KEY, settings.d1TitlePtr);
-            pointerPatterns.Add(D2A_KEY, settings.d2ArtistPtr);
-            pointerPatterns.Add(D2T_KEY, settings.d2TitlePtr);
-            pointerPatterns.Add(D3A_KEY, settings.d3ArtistPtr);
-            pointerPatterns.Add(D3T_KEY, settings.d3TitlePtr);
-            pointerPatterns.Add(D4A_KEY, settings.d4ArtistPtr);
-            pointerPatterns.Add(D4T_KEY, settings.d4TitlePtr);
-
-            MasterDeckBox.Text = settings.mdPtr;
-            Deck1ArtistBox.Text = settings.d1ArtistPtr;
-            Deck1TitleBox.Text = settings.d1TitlePtr;
-            Deck2ArtistBox.Text = settings.d2ArtistPtr;
-            Deck2TitleBox.Text = settings.d2TitlePtr;
-            Deck3ArtistBox.Text = settings.d3ArtistPtr;
-            Deck3TitleBox.Text = settings.d3TitlePtr;
-            Deck4ArtistBox.Text = settings.d4ArtistPtr;
-            Deck4TitleBox.Text = settings.d4TitlePtr;
-            PortBox.Text = port.ToString();
+            ReloadSettings();
         }
 
-        private void settingsBtn_Click(object sender, EventArgs e)
+        public void ReloadSettings()
+        {
+            port = settings.Port;
+            SetPointer(MD_KEY);
+            SetPointer(D1A_KEY);
+            SetPointer(D1T_KEY);
+            SetPointer(D2A_KEY);
+            SetPointer(D2T_KEY);
+            SetPointer(D3A_KEY);
+            SetPointer(D3T_KEY);
+            SetPointer(D4A_KEY);
+            SetPointer(D4T_KEY);
+        }
+
+        public void SetPointer(string ptrType)
+        {
+            lock (locker)
+            {
+                pointerPatterns[ptrType] = settingsType.GetProperty(ptrType).GetValue(settings).ToString();
+            }
+        }
+
+        private void SettingsBtn_Click(object sender, EventArgs e)
         {
             if (!settingsShown)
             {
-                var newWidth = ClientSize.Width > settingsWidth ? ClientSize.Width : settingsWidth;
-                var newHeight = PresetShareButton.Location.Y + PresetShareButton.Size.Height + SIZE_PADDING;
-                var newSize = new System.Drawing.Size(newWidth, newHeight);
-
-                minWidth = settingsWidth;
-                ClientSize = newSize;
-                settingsBtn.Text = "Hide Settings";
+                var settForm = new SettingsForm(settings);
+                settForm.FormClosed += SettingsFormClosed;
+                settForm.Show(this);
+                settingsShown = true;
             }
-            else
-            {
-                var newSize = new System.Drawing.Size(ClientSize.Width, normalHeight);
-
-                minWidth = normalWidth;
-                ClientSize = newSize;
-                ResizeIfNeeded(); // Too lazy to calculate the width again here
-                settingsBtn.Text = "Show Settings";
-            }
-
-            settingsShown = !settingsShown;
         }
 
-        private void EnterPressed(object sender, KeyPressEventArgs e)
+        public void SettingsFormClosed(object sender, EventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return)
-                PortChanged(sender, e);
-            else
+            settingsShown = false;
+            PortChanged();
+        }
+
+        public void PortChanged()
+        {
+            if (port != settings.Port)
+            {
                 running = false;
-        }
+                httpd.Interrupt();
+                tcpListener.Stop();
+                port = settings.Port;
 
-        private void PortChanged(object sender, EventArgs e)
-        {
-            running = false;
-            httpd.Interrupt(); // We have sleeps in the main loop. This wakes the thread from those sleeps, terminating the loop since we set running to false
-            tcpListener.Stop();
-            var settings = Properties.Settings.Default;
-
-            try
-            {
-                Int32.TryParse(PortBox.Text, out port);
-                settings.port = port;
-                running = true;
-                httpd = new Thread(HTTPdaemon);
-                httpd.Start();
+                try
+                {
+                    running = true;
+                    httpd = new Thread(HTTPdaemon);
+                    httpd.Start();
+                }
+                catch (Exception ex)
+                {
+                    running = false;
+                    StatusMessage.Text = string.Format("Status: Error restarting HTTP Daemon: {0}", ex.Message);
+                }
             }
-            catch
-            {
-                StatusMessage.Text = "Status: Problem with the given port.";
-                running = false;
-            }
-        }
-
-        private void PtrBoxChanged(object sender, EventArgs e)
-        {
-            var SenderBox = (TextBox)sender;
-            var settings = Properties.Settings.Default;
-            var baseStr = "Status: {0} ptr has been set to: {1}";
-
-            switch (SenderBox.Name)
-            {
-                case "Deck1ArtistBox":
-                    pointerPatterns[D1A_KEY] = SenderBox.Text;
-                    settings.d1ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 1 Artist", SenderBox.Text); 
-                    break;
-
-                case "Deck1TitleBox":
-                    pointerPatterns[D1T_KEY] = SenderBox.Text;
-                    settings.d1TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 1 Title", SenderBox.Text);
-                    break;
-
-                case "Deck2ArtistBox":
-                    pointerPatterns[D2A_KEY] = SenderBox.Text;
-                    settings.d2ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 2 Artist", SenderBox.Text);
-                    break;
-
-                case "Deck2TitleBox":
-                    pointerPatterns[D2T_KEY] = SenderBox.Text;
-                    settings.d2TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 2 Title", SenderBox.Text);
-                    break;
-                case "Deck3ArtistBox":
-                    pointerPatterns[D3A_KEY] = SenderBox.Text;
-                    settings.d3ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 3 Artist", SenderBox.Text);
-                    break;
-
-                case "Deck3TitleBox":
-                    pointerPatterns[D3T_KEY] = SenderBox.Text;
-                    settings.d3TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 3 Title", SenderBox.Text);
-                    break;
-
-                case "Deck4ArtistBox":
-                    pointerPatterns[D4A_KEY] = SenderBox.Text;
-                    settings.d4ArtistPtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 4 Artist", SenderBox.Text);
-                    break;
-
-                case "Deck4TitleBox":
-                    pointerPatterns[D4T_KEY] = SenderBox.Text;
-                    settings.d4TitlePtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Deck 4 Title", SenderBox.Text);
-                    break;
-
-                case "MasterDeckBox":
-                    pointerPatterns[MD_KEY] = SenderBox.Text;
-                    settings.mdPtr = SenderBox.Text;
-                    StatusMessage.Text = string.Format(baseStr, "Master Deck", SenderBox.Text);
-                    break;
-            }
-
-            settings.Save();
         }
     }
 
