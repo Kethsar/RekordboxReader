@@ -8,6 +8,7 @@ This has been tested and working with Rekordbox 5.8.1 and 5.8.3, and settings fo
 ## Known Issues
 * Switching from 2-deck mode to 4-deck mode in Rekordbox breaks things, and requires its own set of pointers.
 * Switching from 4-deck mode to 2-deck mode breaks things worse, and using the 2-deck mode pointers won't work until Rekordbox is re-opened.
+* Technically the above to problems can be fixed by checking all potential pointers and observing their behaviour but that is effort.
 * This software is garbage (won't fix)
 
 ## Loopstream Setup
@@ -19,16 +20,4 @@ Alternatively, if you are cautious about letting a program deserialize gzipped t
 ![Loopstream Settings](img/ls_settings.png)
 
 ## Setting presets
-Because we are great coders, the default pointers loaded with Rekordbox Reader might not actually be correct for your setup. Use the below settings for your version by copying the string, clicking "Show Settings" on Rekordbox Reader, and clicking "Load". Alternatively refer to the images below each set of text.
-
-### v5.8.1
-* 2-deck mode:
-``!RR!H4sIAAAAAAAEADNSVCxKzc4vSknKr9BLrUjVNjC2TDYxMzDQMgIiSwstQ1MgttAyIEqdATZ1iWbGxqYGWuYWBkCDgIpxGohNIdhEGEDX4AjV4AI20QTsFkNLZwDIRR521AAAAA==``
-
-![Rekordbox 5.8.1 Settings](img/rbr_5-8-1.png)
-
-### v5.8.3
-* 2-deck mode:
-``!RR!H4sIAAAAAAAEADNSVCxKzc4vSknKr9BLrUjVNjC2dDYzdjXQMgIiSwstQ1MgttAyIEqdATZ1jmamRs4GWuYWBkCDgIpxGohNIdhEGMClwQVsognYLYaWzgBC9XCN1AAAAA==``
-
-![Rekordbox 5.8.3 Settings](img/rbr_5-8-3.png)
+The program now ships with a preset file embedded, which it will extract if it doesn't find the file in the same directory. Presets will be added as we feel like it.
