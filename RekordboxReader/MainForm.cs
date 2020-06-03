@@ -460,6 +460,15 @@ namespace RekordboxReader
 
         public void LoadSettings()
         {
+            if (!File.Exists(RRSettings.GetSettingsFilename()))
+            {
+                using (Stream presetStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("RekordboxReader.Resources.presets.xml"),
+                              settFileStream = new FileStream(RRSettings.GetSettingsFilename(), FileMode.CreateNew))
+                {
+                    presetStream.CopyTo(settFileStream);
+                }
+            }
+
             settings = RRSettings.LoadFile();
             if (pointerPatterns == null)
                 pointerPatterns = new Dictionary<string, string>();

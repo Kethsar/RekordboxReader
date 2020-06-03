@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RekordboxReader.Properties
-{
-
-
+namespace RekordboxReader.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,67 @@ namespace RekordboxReader.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RekordboxReader.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;rrsettings&gt;
+        ///  &lt;port&gt;41379&lt;/port&gt;
+        ///  &lt;name&gt;&lt;![CDATA[5.8.1 2-deck]]&gt;&lt;/name&gt;
+        ///  &lt;d1aptr&gt;rekordbox.exe+039c4600*20*298*158*18*0&lt;/d1aptr&gt;
+        ///  &lt;d1tptr&gt;rekordbox.exe+039c4600*20*298*158*10*0&lt;/d1tptr&gt;
+        ///  &lt;d2aptr&gt;rekordbox.exe+03a63350*780*180*258*18*0&lt;/d2aptr&gt;
+        ///  &lt;d2tptr&gt;rekordbox.exe+03a63350*780*180*258*10*0&lt;/d2tptr&gt;
+        ///  &lt;d3aptr&gt;&lt;/d3aptr&gt;
+        ///  &lt;d3tptr&gt;&lt;/d3tptr&gt;
+        ///  &lt;d4aptr&gt;&lt;/d4aptr&gt;
+        ///  &lt;d4tptr&gt;&lt;/d4tptr&gt;
+        ///  &lt;mdptr&gt;rekordbox.exe+03A63350*7D8*18*40*20*19C&lt;/mdptr&gt;
+        ///  &lt;presets&gt;
+        ///    &lt;rrpreset&gt;
+        ///      &lt;name&gt;&lt;![CDATA[5.8.1 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string presets {
+            get {
+                return ResourceManager.GetString("presets", resourceCulture);
             }
         }
     }
