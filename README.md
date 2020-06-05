@@ -20,4 +20,4 @@ Alternatively, if you are cautious about letting a program deserialize gzipped t
 ![Loopstream Settings](img/ls_settings.png)
 
 ## Setting presets
-The program now ships with a preset file embedded, which it will extract if it doesn't find the file in the same directory. Presets will be added as we feel like it.
+The program now ships with a preset file embedded, which it will extract if it doesn't find the file in the same directory. Presets will be added as we feel like it. You can grab the latest preset settings from [The resources directory](https://github.com/Kethsar/RekordboxReader/tree/master/RekordboxReader/Resources). Place it in the same directory as RekordboxReader and name it RekordboxReader.xml
