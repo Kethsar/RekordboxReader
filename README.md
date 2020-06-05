@@ -3,12 +3,12 @@ Probes the memory of Rekordbox, which is DJ software by PioneerDJ, and retrieves
 
 As this program probes memory, and Rekordbox is 64-bit software, this program must be built in 64-bit mode to work.
 
-This has been tested and working with Rekordbox 5.8.1 and 5.8.3, and settings for both can be found below. Other versions require probing for pointers using CheatEngine.
+This has been tested and working with Rekordbox 5.8.1 and 5.8.3, and settings for both can be found below. Other versions require probing for pointers using CheatEngine. Refer to [Finding Rekordbox Pointers.md](Finding%20Rekordbox%20Pointers.md)
 
 ## Known Issues
-* Switching from 2-deck mode to 4-deck mode in Rekordbox breaks things, and requires its own set of pointers.
-* Switching from 4-deck mode to 2-deck mode breaks things worse, and using the 2-deck mode pointers won't work until Rekordbox is re-opened.
-* Technically the above to problems can be fixed by checking all potential pointers and observing their behaviour but that is effort.
+* ~~Switching from 2-deck mode to 4-deck mode in Rekordbox breaks things, and requires its own set of pointers.~~
+* ~~Switching from 4-deck mode to 2-deck mode breaks things worse, and using the 2-deck mode pointers won't work until Rekordbox is re-opened.~~
+* Technically the above to problems can be fixed by checking all potential pointers and observing their behaviour but that is effort. 
 * This software is garbage (won't fix)
 
 ## Loopstream Setup
