@@ -1,28 +1,16 @@
 <rrsettings>
   <port>41379</port>
-  <name><![CDATA[5.8.3 all-modes]]></name>
-  <d1aptr>rekordbox.exe+03a578f0*130*0</d1aptr>
-  <d1tptr>rekordbox.exe+03a578f0*138*0</d1tptr>
-  <d2aptr>rekordbox.exe+03a578f0*160*0</d2aptr>
-  <d2tptr>rekordbox.exe+03a578f0*168*0</d2tptr>
-  <d3aptr>rekordbox.exe+03a578f0*190*0</d3aptr>
-  <d3tptr>rekordbox.exe+03a578f0*198*0</d3tptr>
-  <d4aptr>rekordbox.exe+03a578f0*1c0*0</d4aptr>
-  <d4tptr>rekordbox.exe+03a578f0*1c8*0</d4tptr>
-  <mdptr>rekordbox.exe+03A652C0*30*19C</mdptr>
+  <name><![CDATA[5.8.1 all-modes]]></name>
+  <d1aptr>rekordbox.exe+03a559b0*138*0</d1aptr>
+  <d1tptr>rekordbox.exe+03a559b0*130*0</d1tptr>
+  <d2aptr>rekordbox.exe+03a559b0*168*0</d2aptr>
+  <d2tptr>rekordbox.exe+03a559b0*160*0</d2tptr>
+  <d3aptr>rekordbox.exe+03a559b0*198*0</d3aptr>
+  <d3tptr>rekordbox.exe+03a559b0*190*0</d3tptr>
+  <d4aptr>rekordbox.exe+03a559b0*1c8*0</d4aptr>
+  <d4tptr>rekordbox.exe+03a559b0*1c0*0</d4tptr>
+  <mdptr>rekordbox.exe+03A63350*7D8*18*40*20*19C</mdptr>
   <presets>
-    <rrpreset>
-      <name><![CDATA[5.8.1 2-deck]]></name>
-      <d1aptr>rekordbox.exe+039c4600*20*298*158*18*0</d1aptr>
-      <d1tptr>rekordbox.exe+039c4600*20*298*158*10*0</d1tptr>
-      <d2aptr>rekordbox.exe+03a63350*780*180*258*18*0</d2aptr>
-      <d2tptr>rekordbox.exe+03a63350*780*180*258*10*0</d2tptr>
-      <d3aptr></d3aptr>
-      <d3tptr></d3tptr>
-      <d4aptr></d4aptr>
-      <d4tptr></d4tptr>
-      <mdptr>rekordbox.exe+03A63350*7D8*18*40*20*19C</mdptr>
-    </rrpreset>
     <rrpreset>
       <name><![CDATA[5.8.3 all-modes]]></name>
       <d1aptr>rekordbox.exe+03a578f0*130*0</d1aptr>
@@ -34,6 +22,18 @@
       <d4aptr>rekordbox.exe+03a578f0*1c0*0</d4aptr>
       <d4tptr>rekordbox.exe+03a578f0*1c8*0</d4tptr>
       <mdptr>rekordbox.exe+03A652C0*30*19C</mdptr>
+    </rrpreset>
+    <rrpreset>
+      <name><![CDATA[5.8.1 all-modes]]></name>
+      <d1aptr>rekordbox.exe+03a559b0*138*0</d1aptr>
+      <d1tptr>rekordbox.exe+03a559b0*130*0</d1tptr>
+      <d2aptr>rekordbox.exe+03a559b0*168*0</d2aptr>
+      <d2tptr>rekordbox.exe+03a559b0*160*0</d2tptr>
+      <d3aptr>rekordbox.exe+03a559b0*198*0</d3aptr>
+      <d3tptr>rekordbox.exe+03a559b0*190*0</d3tptr>
+      <d4aptr>rekordbox.exe+03a559b0*1c8*0</d4aptr>
+      <d4tptr>rekordbox.exe+03a559b0*1c0*0</d4tptr>
+      <mdptr>rekordbox.exe+03A63350*7D8*18*40*20*19C</mdptr>
     </rrpreset>
   </presets>
 </rrsettings>
