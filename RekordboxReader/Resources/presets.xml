@@ -12,6 +12,19 @@
   <mdptr>rekordbox.exe+03A63350*7D8*18*40*20*19C</mdptr>
   <presets>
     <rrpreset>
+      <name><![CDATA[5.8.5 all-modes]]></name>
+      <d1aptr>rekordbox.exe+03A5E950*138*0</d1aptr>
+      <d1tptr>rekordbox.exe+03A5E950*130*0</d1tptr>
+      <d2aptr>rekordbox.exe+03A5E950*168*0</d2aptr>
+      <d2tptr>rekordbox.exe+03A5E950*160*0</d2tptr>
+      <d3aptr>rekordbox.exe+03A5E950*198*0</d3aptr>
+      <d3tptr>rekordbox.exe+03A5E950*190*0</d3tptr>
+      <d4aptr>rekordbox.exe+03A5E950*1c8*0</d4aptr>
+      <d4tptr>rekordbox.exe+03A5E950*1c0*0</d4tptr>
+      <mdptr>rekordbox.exe+03A6C970*1C8*19C</mdptr>
+      <!-- optional mdptr: rekordbox.exe+03A6C970*30*19C -->
+    </rrpreset>
+    <rrpreset>
       <name><![CDATA[5.8.3 all-modes]]></name>
       <d1aptr>rekordbox.exe+03a578f0*130*0</d1aptr>
       <d1tptr>rekordbox.exe+03a578f0*138*0</d1tptr>
