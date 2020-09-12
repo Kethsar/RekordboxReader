@@ -3,6 +3,8 @@
 
 ![CheatEngine 1](img/ce-1.png)
 
+**spoiler:** you'll want to skip straight to [Finding the Deck Struct via bpm](#finding-the-deck-struct-via-bpm) since that JustWorks (it covers artist/title etc)
+
 ## Artist/Title Pointers
 * In Rekordbox, load a song into the deck you want to find pointers for.
 * On the right half of CheatEngine, set the Value Type to String, and enter the exact song title or artist name loaded into the deck.
@@ -41,11 +43,15 @@ I may have gotten lucky when I went through these steps to write this, and you m
 3. Repeat steps 2-4 of ez mode taking but for all pointer scan windows. Do this until you have a decently small list of possible pointers.
 4. Load songs into all 4 decks.
 5. Switch between 2-deck and 4-deck mode, refreshing the pointer scan windows after each switch. Do this two or three times. You should be left with only a couple potentially valid pointers.
-6. On the main CheatEngine window, click "Add Address Manually." In the window that pops up, check the "Pointer" box, set the Type to Text, and add as many offsets as is needed for whatever pointer you are checking. ![CheatEngine 10](img/ce-10.png)
-7. Add the base address and offsets, verify the value is what you expect. ![CheatEngine 11](img/ce-11.png)
-8. Increase the last non-0 offset by 0x8. Verify it shows the artist.             ![CheatEngine 12](img/ce-12.png)
+6. On the main CheatEngine window, click "Add Address Manually." In the window that pops up, check the "Pointer" box, set the Type to Text, and add as many offsets as is needed for whatever pointer you are checking.  
+![CheatEngine 10](img/ce-10.png)
+7. Add the base address and offsets, verify the value is what you expect.  
+![CheatEngine 11](img/ce-11.png)
+8. Increase the last non-0 offset by 0x8. Verify it shows the artist.  
+![CheatEngine 12](img/ce-12.png)
 9. Increase the offset by 0x30 from its initial value, and verify the song title in deck 2 appears. If it does not, discard the pointer and try the next one starting at step 7. 
-10. Repeat step 9 cycling through all 4 decks, so the deck 4 title offset value will be 0x90 above the initial offset value. ![CheatEngine 13](img/ce-13.png)
+10. Repeat step 9 cycling through all 4 decks, so the deck 4 title offset value will be 0x90 above the initial offset value.  
+![CheatEngine 13](img/ce-13.png)
 11. Congratulations, you have a pointer that should work for all deck modes. Maybe.
 
 ### Finding the Deck Struct via bpm
@@ -53,18 +59,18 @@ What we are looking for is an array of Deck structs. The Deck struct looks somet
 
 1. Start rekordbox in 2-deck mode. Switch over to 4-deck.
 2. Load songs in all 4 decks. Preferably something you'd like to listen to while scanning for pointers.
-3. Change the tempo of deck 1 and search for the bpm of deck 1. (ie. 128.00 bpm text/string search) You should get a couple results like<br>
+3. Change the tempo of deck 1, then do a text/string search for the track's original BPM (so 155.00 in the pic below, not 159.10) You should get a couple results like<br>
 ![CheatEngine 16](img/ce-16.png)<br>
 4. Grab all those addresses into the bottom window and right click, perform a Pointer scan for that address. Make sure to keep organized. I'd like to name the scan files as their respective row. ie. the 3rd row will just be named 3. And the rescans in the upcoming steps will be named 3-1. It's important to keep the previous scans in the case you do an error and need to recover.
 5. After all the scans are done, and you have all of the scan windows open. Change the song of Deck 1 to a different song.
 6. After changing the song, you should see that some of the addresses have changed. Those are the pointers you want.<br>
 ![CheatEngine 17](img/ce-17.png)<br>
 In the above case, I'll be taking a look at the 2nd and 3rd address.
-7. Depending on how lucky you feel, you may sort by lowest offset and get the lowest offset ones onto the main window by double clicking. If you want to narrow down the number of pointers, get the 4 byte value of the new bpm of deck 1 and click on Pointer Scanner -> Rescan Memory, Hit value to find. I switched mine to to a 120.00 bpm song so my 4 byte value is 774910513.
+7. There will be exactly one pointer which is correct (at least in rekobo v5.8.5) so switch deck 1 to a new track. Do a search for the new track's BPM, add it to the codelist (doubleclick the result), rightclick » change record » type: `4 bytes`, rightclick » disable "Show as hexadecimal" and that integer value is what we want in the pointerscan results. So in the ptrscan window click on Pointer Scanner -> Rescan Memory, Hit value to find. I switched mine to to a 120.00 bpm song so my 4 byte value is 774910513.<br>
 ![CheatEngine 18](img/ce-18.png)
-8. After getting the pointer you want to test onto the main window by double clicking, double click on address, and change the second to last pointer by hitting the left and right arrows or by adding/extracting 8 bytes. When moving by 8 bytes, you'll be traversing the struct mentioned above. If you hit it 4 times or extract 32 bytes, you should end up in the title for deck 1.<br>
+8. After getting the pointer you want to test onto the main window by double clicking, double click on address, and change the second to last pointer (538 in the pic below) by hitting the left and right arrows or by adding/subtracting 8 bytes. When moving by 8 bytes, you'll be traversing the struct mentioned above. If you hit it 4 times (jumping 32 bytes), you should end up in the title for deck 1.<br>
 ![CheatEngine 19](img/ce-19.png)
-9. If you have confirmed that the pointer you found was a deck struct and is working, here comes the fun part. If you keep adding 8 bytes to the second to last offset, you should end up in deck 2. And if you continue adding, you'll end up in deck 3, and then deck 4. If the pointer you found does not lead to the other decks, Head back to step 7 and grab yourself another one, or you can repeat the same procedure for other decks and find different pointers for each.
+9. If you have confirmed that the pointer you found was a deck struct and is working, here comes the fun part. If you keep adding 8 bytes to the second to last offset, you should end up in deck 2. And if you continue adding, you'll end up in deck 3, and then deck 4. Note that the pointer should also work if there's nothing loaded into deck 1, so eject the first track and see if you can still traverse to the other decks. If the pointer you found does not lead to the other decks, Head back to step 7 and grab yourself another one, or you can repeat the same procedure for other decks and find different pointers for each (not recommended tho).
 10. If you have found a pointer that can be used to get all the other decks too, it's time to test it. It should be able to withstand: Closing and reopening rekordbox,  switching modes to export/performance/lighting. What it should not be able to withstand: Updating rekordbox.
 11. See step 11 of HARD MODE.
 
