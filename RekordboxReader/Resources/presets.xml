@@ -21,8 +21,7 @@
       <d3tptr>rekordbox.exe+03A5E950*190*0</d3tptr>
       <d4aptr>rekordbox.exe+03A5E950*1c8*0</d4aptr>
       <d4tptr>rekordbox.exe+03A5E950*1c0*0</d4tptr>
-      <mdptr>rekordbox.exe+03A6C970*1C8*19C</mdptr>
-      <!-- optional mdptr: rekordbox.exe+03A6C970*30*19C -->
+      <mdptr>rekordbox.exe+03A6C970*30*19C</mdptr>
     </rrpreset>
     <rrpreset>
       <name><![CDATA[5.8.3 all-modes]]></name>
