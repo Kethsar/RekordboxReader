@@ -47,5 +47,13 @@
       <d4tptr>rekordbox.exe+03a559b0*1c0*0</d4tptr>
       <mdptr>rekordbox.exe+03A63350*7D8*18*40*20*19C</mdptr>
     </rrpreset>
+	<rrpreset>
+      <name><![CDATA[6.7.1 2deck-horizontal]]></name>
+      <d1aptr>rekordbox.exe+042db430*20*298*110*18*0</d1aptr>
+      <d1tptr>rekordbox.exe+042db430*20*298*110*10*0</d1tptr>
+      <d2aptr>rekordbox.exe+4329560*168*0</d2aptr>
+      <d2tptr>rekordbox.exe+4329560*160*0</d2tptr>
+      <mdptr>rekordbox.exe+0433c790*5a0*18*104</mdptr>
+    </rrpreset>
   </presets>
 </rrsettings>
